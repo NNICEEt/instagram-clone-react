@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   Avatar,
   Box,
@@ -15,6 +17,7 @@ import {
   Send,
   Smile,
 } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 
 import FeedImageFallback from '@/assets/webp/feed-image-fallback.webp'
 import ExpandableText from '@/common/components/expandable-text'
@@ -40,6 +43,13 @@ const FeedCard = ({
   likeCount,
   commentCount,
 }: FeedCardProps) => {
+  const [showHeart, setShowHeart] = useState(false)
+
+  const handleDoubleClick = () => {
+    setShowHeart(true)
+    setTimeout(() => setShowHeart(false), 800)
+  }
+
   return (
     <Card.Root
       border="none"
@@ -73,7 +83,35 @@ const FeedCard = ({
           </FeedIconButton>
         </Box>
       </Card.Title>
-      <Image src={imageSrc || FeedImageFallback} />
+      <Box position="relative">
+        <Image
+          src={imageSrc || FeedImageFallback}
+          onDoubleClick={handleDoubleClick}
+        />
+        <Box
+          position="absolute"
+          inset={0}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          pointerEvents="none"
+        >
+          <AnimatePresence>
+            {showHeart && (
+              <motion.span
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1.2, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <FeedIconButton color="red.500">
+                  <Heart size={84} />
+                </FeedIconButton>
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </Box>
+      </Box>
       <Card.Body px={{ base: 4, sm: 0 }} py={1} gap="2">
         <Box
           as="section"
