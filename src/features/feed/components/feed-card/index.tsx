@@ -74,7 +74,7 @@ const FeedCard = ({
         </Box>
       </Card.Title>
       <Image src={imageSrc || FeedImageFallback} />
-      <Card.Body px={0} py={1} gap="2">
+      <Card.Body px={{ base: 4, sm: 0 }} py={1} gap="2">
         <Box
           as="section"
           display="flex"
