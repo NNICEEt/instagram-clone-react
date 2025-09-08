@@ -1,14 +1,15 @@
-import { Box } from '@chakra-ui/react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+
+import Layout from '@/app/layout'
 
 const RootLayout = () => {
   return (
     <>
-      <Box h="100vh">
+      <Layout>
         <Outlet />
-      </Box>
-      <TanStackRouterDevtools position="top-left" />
+      </Layout>
+      {/*<TanStackRouterDevtools position="top-right" />*/}
     </>
   )
 }

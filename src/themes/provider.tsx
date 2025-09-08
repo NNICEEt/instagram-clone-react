@@ -27,7 +27,7 @@ export function ThemeProvider({
   return (
     <NextThemeProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="light"
       enableSystem
       {...props}
     >
