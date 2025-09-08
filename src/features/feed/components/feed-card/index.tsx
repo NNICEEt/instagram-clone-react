@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Card,
-  IconButton,
   Image,
   Input,
   InputGroup,
@@ -17,9 +16,30 @@ import {
   Smile,
 } from 'lucide-react'
 
+import FeedImageFallback from '@/assets/webp/feed-image-fallback.webp'
 import ExpandableText from '@/common/components/expandable-text'
 
-const FeedCard = () => {
+import FeedIconButton from '../feed-icon-button'
+
+const LEFT_ICONS = [Heart, MessageCircle, Send]
+
+type FeedCardProps = {
+  avatarSrc?: string
+  authorName: string
+  imageSrc: string
+  content?: string
+  likeCount: number
+  commentCount: number
+}
+
+const FeedCard = ({
+  avatarSrc,
+  authorName,
+  imageSrc,
+  content,
+  likeCount,
+  commentCount,
+}: FeedCardProps) => {
   return (
     <Card.Root
       border="none"
@@ -41,26 +61,19 @@ const FeedCard = () => {
         >
           <Box display="flex" alignItems="center">
             <Avatar.Root size="xs">
-              <Avatar.Fallback name="Segun Adebayo" />
-              <Avatar.Image src="https://bit.ly/sage-adebayo" />
+              <Avatar.Fallback name={authorName} />
+              <Avatar.Image src={avatarSrc} />
             </Avatar.Root>
             <Text as="span" ml={3}>
-              John Doe
+              {authorName}
             </Text>
           </Box>
-          <IconButton
-            variant="ghost"
-            color="gray.500"
-            _hover={{ bg: 'none', color: 'gray.500' }}
-          >
+          <FeedIconButton color="gray.500">
             <Ellipsis />
-          </IconButton>
+          </FeedIconButton>
         </Box>
       </Card.Title>
-      <Image
-        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        alt="Green double couch with wooden legs"
-      />
+      <Image src={imageSrc || FeedImageFallback} />
       <Card.Body px={0} py={1} gap="2">
         <Box
           as="section"
@@ -69,80 +82,53 @@ const FeedCard = () => {
           alignItems="center"
         >
           <Box>
-            <Box
-              as="button"
-              p={2}
-              cursor="pointer"
-              _hover={{ color: 'gray.500' }}
-            >
-              <Heart size={24} />
-            </Box>
-            <Box
-              as="button"
-              p={2}
-              cursor="pointer"
-              _hover={{ color: 'gray.500' }}
-            >
-              <MessageCircle size={24} />
-            </Box>
-            <Box
-              as="button"
-              p={2}
-              cursor="pointer"
-              _hover={{ color: 'gray.500' }}
-            >
-              <Send size={24} />
-            </Box>
+            {LEFT_ICONS.map((Icon, index) => (
+              <FeedIconButton key={index}>
+                <Icon size={24} />
+              </FeedIconButton>
+            ))}
           </Box>
           <Box>
+            <FeedIconButton>
+              <Bookmark size={24} />
+            </FeedIconButton>
+          </Box>
+        </Box>
+        {!!likeCount && (
+          <Box as="section">
+            <Text as="span" fontWeight="semibold">
+              {likeCount} likes
+            </Text>
+          </Box>
+        )}
+        {!!content && (
+          <Box as="section">
+            <ExpandableText noOfLines={2} moreLabel="more">
+              <Text as="strong">{authorName}</Text> {content}
+            </ExpandableText>
+          </Box>
+        )}
+        {!!commentCount && (
+          <Box as="section">
             <Box
               as="button"
-              p={2}
+              color="gray.500"
               cursor="pointer"
-              _hover={{ color: 'gray.500' }}
+              _hover={{ color: 'gray.700' }}
             >
-              <Bookmark size={24} />
+              View {commentCount} comment
             </Box>
           </Box>
-        </Box>
-        <Box as="section">
-          <Text as="span" fontWeight="semibold">
-            21 likes
-          </Text>
-        </Box>
-        <Box as="section">
-          <ExpandableText noOfLines={2} moreLabel="more">
-            <Text as="strong">John Doe</Text> Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Sed euismod, nisl eget aliquam aliquet,
-            nunc nisl aliquet nisl, eget aliquam nisl nisl eget nisl. Sed
-            euismod, nisl eget aliquam aliquet, nunc nisl aliquet nisl, eget
-            aliquam nisl nisl eget nisl.
-          </ExpandableText>
-        </Box>
-        <Box as="section">
-          <Box
-            as="button"
-            color="gray.500"
-            cursor="pointer"
-            _hover={{ color: 'gray.700' }}
-          >
-            View {1} comment
-          </Box>
-        </Box>
+        )}
         <Box as="section">
           <InputGroup
             endElementProps={{
               pr: 0,
             }}
             endElement={
-              <Box
-                as="button"
-                p={2}
-                cursor="pointer"
-                _hover={{ color: 'gray.500' }}
-              >
+              <FeedIconButton>
                 <Smile size={16} />
-              </Box>
+              </FeedIconButton>
             }
           >
             <Input
