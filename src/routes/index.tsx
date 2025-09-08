@@ -1,15 +1,7 @@
-import { Button, HStack } from '@chakra-ui/react'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({
-  component: Feed,
-})
+import FeedPage from '@/features/feed/pages/feed-page'
 
-function Feed() {
-  return (
-    <HStack>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-    </HStack>
-  )
-}
+export const Route = createFileRoute('/')({
+  component: FeedPage,
+})

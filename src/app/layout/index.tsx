@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       flexDirection={{ base: 'column-reverse', md: 'row' }}
     >
       <NavMenu />
-      <Box as="main" px={4} py={4} flex={1} overflowX="auto">
+      <Box as="main" px={{ base: 0, sm: 4 }} py={4} flex={1} overflowY="auto">
         {children}
       </Box>
       <Header />
