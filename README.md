@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# Instagram Clone (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an **Instagram-like frontend application** built with a modern tech stack and a scalable, feature-based architecture.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** – Leveraging the latest React features.
+- **TypeScript** – For robust type safety across the application.
+- **Vite** – High-performance build tool for rapid development.
+- **TanStack Router** – Fully type-safe routing for React.
+- **TanStack Query** – Powerful asynchronous state management, caching, and data synchronization.
+- **Chakra UI** – A simple, modular, and accessible component library to build the UI.
+- **Lucide React** – A beautiful and consistent icon library.
+- **ESLint & Prettier** – For maintaining code quality and consistent formatting.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📂 Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+The project follows a feature-based organization to keep the codebase modular and scalable.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+src/
+  app/             # Application-level components (e.g., layouts, shells)
+  assets/          # Static assets like images and icons
+  common/          # Shared components, hooks, and utilities
+  features/        # Feature-based modules (e.g., feed, profile)
+  lib/             # Core libraries and external service configurations (e.g., fetcher)
+  routes/          # Route definitions for TanStack Router
+  themes/          # Theming and styling configuration
+  main.tsx         # Main application entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Setup & Run
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project uses [Bun](https://bun.sh/) as the package manager and runtime.
+
+```bash
+# Install dependencies
+bun install
+
+# Start the development server
+bun dev
+
+# Build the application for production
+bun run build
+
+# Lint the codebase
+bun lint
+
+# Preview the production build
+bun preview
 ```
