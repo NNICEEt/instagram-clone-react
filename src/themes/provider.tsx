@@ -54,10 +54,11 @@ export const ThemeToggleButton = React.forwardRef<
         onClick={toggleTheme}
         variant="ghost"
         aria-label="Toggle color mode"
-        icon={theme === 'dark' ? <LuMoon size={20} /> : <LuSun size={20} />}
         size="sm"
         {...props}
-      />
+      >
+        {theme === 'dark' ? <LuMoon size={20} /> : <LuSun size={20} />}
+      </IconButton>
     </ClientOnly>
   )
 })

@@ -12,7 +12,6 @@ const Feeds = () => {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
     status,
   } = useInfinitePost()

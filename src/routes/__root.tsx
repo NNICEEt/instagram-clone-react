@@ -9,7 +9,7 @@ const RootLayout = () => {
       <Layout>
         <Outlet />
       </Layout>
-      {/*<TanStackRouterDevtools position="top-right" />*/}
+      <TanStackRouterDevtools position="top-right" />
     </>
   )
 }
