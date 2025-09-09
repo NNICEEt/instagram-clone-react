@@ -3,6 +3,8 @@ import { Box } from '@chakra-ui/react'
 import Header from './header'
 import NavMenu from './nav-menu'
 
+// TODO(app-shell): Refactor this layout to use App Shell with Header + Nav + Main
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box
