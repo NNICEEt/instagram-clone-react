@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 
 import { Box } from '@chakra-ui/react'
 
-const FeedIconButton = (props: ComponentProps<typeof Box>) => {
+const IconButton = (props: ComponentProps<typeof Box>) => {
   return (
     <Box
       as="button"
@@ -15,4 +15,4 @@ const FeedIconButton = (props: ComponentProps<typeof Box>) => {
   )
 }
 
-export default FeedIconButton
+export default IconButton
