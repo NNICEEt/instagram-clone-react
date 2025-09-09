@@ -21,8 +21,7 @@ import { AnimatePresence, motion } from 'motion/react'
 
 import FeedImageFallback from '@/assets/webp/feed-image-fallback.webp'
 import ExpandableText from '@/common/components/expandable-text'
-
-import FeedIconButton from '../feed-icon-button'
+import IconButton from '@/common/components/icon-button'
 
 const LEFT_ICONS = [Heart, MessageCircle, Send]
 
@@ -78,9 +77,9 @@ const FeedCard = ({
               {authorName}
             </Text>
           </Box>
-          <FeedIconButton color="gray.500">
+          <IconButton color="gray.500">
             <Ellipsis />
-          </FeedIconButton>
+          </IconButton>
         </Box>
       </Card.Title>
       <Box position="relative">
@@ -104,9 +103,9 @@ const FeedCard = ({
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <FeedIconButton color="red.500">
+                <IconButton color="red.500">
                   <Heart size={84} />
-                </FeedIconButton>
+                </IconButton>
               </motion.span>
             )}
           </AnimatePresence>
@@ -121,15 +120,15 @@ const FeedCard = ({
         >
           <Box>
             {LEFT_ICONS.map((Icon, index) => (
-              <FeedIconButton key={index}>
+              <IconButton key={index} _first={{ pl: 0 }}>
                 <Icon size={24} />
-              </FeedIconButton>
+              </IconButton>
             ))}
           </Box>
           <Box>
-            <FeedIconButton>
+            <IconButton pr={0}>
               <Bookmark size={24} />
-            </FeedIconButton>
+            </IconButton>
           </Box>
         </Box>
         {!!likeCount && (
@@ -164,9 +163,9 @@ const FeedCard = ({
               pr: 0,
             }}
             endElement={
-              <FeedIconButton>
+              <IconButton>
                 <Smile size={16} />
-              </FeedIconButton>
+              </IconButton>
             }
           >
             <Input
